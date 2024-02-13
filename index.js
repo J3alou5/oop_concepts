@@ -1,39 +1,44 @@
-class Student {
-    #name;
-    #id;
-    #status = "Active";
-  
-    constructor(name, id) {
-      this.#name = name;
-      this.#id = id;
+class Shape {
+    constructor(color) {
+      this.color = color;
     }
   
-    getId() {
-      return this.#id;
+    setColor(color) {
+      this.color = color;
     }
   
-    setName(name) {
-      this.#name = name;
+    getColor() {
+      return this.color;
     }
   
-    getName() {
-      return this.#name;
-    }
-  
-    setStatus(status) {
-      const validStatuses = ["Active", "Expelled", "Finished", "Inactive"];
-      if (validStatuses.includes(status)) {
-        this.#status = status;
-      }
-    }
-  
-    getStatus() {
-      return this.#status;
+    getArea() {
+      throw new Error("Method 'getArea()' must be implemented.");
     }
   }
   
-  // Näite kasutamine
-  const student = new Student("John Doe", 12345);
-  console.log(student.getName());
-  console.log(student.getId()); 
+class Circle extends Shape {
+    constructor(color, radius) {
+      super(color);
+      this.radius = radius;
+    }
   
+    getArea() {
+      return Math.PI * this.radius * this.radius;
+    }
+  }
+  
+  class Square extends Shape {
+    constructor(color, side) {
+      super(color);
+      this.side = side;
+    }
+  
+    getArea() {
+      return this.side * this.side;
+    }
+  }
+
+
+const circle = new Circle("red", 5);
+const square = new Square("blue", 4);
+
